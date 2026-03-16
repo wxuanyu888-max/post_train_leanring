@@ -1,7 +1,7 @@
 # 训练配置
 training:
   output_dir: ./outputs
-  num_train_epochs: 1             # 已经训练了1.6 epoch，改成1直接完成
+  num_train_epochs: 3
   per_device_train_batch_size: 4
   gradient_accumulation_steps: 4  # 等效 batch_size = 16
   learning_rate: 1.0e-4           # 降低学习率，更稳定

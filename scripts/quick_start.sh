@@ -1,42 +1,46 @@
 #!/bin/bash
-# SFT 项目快速启动脚本 (使用 conda d2l 环境)
 
-set -e
+# Post Train Learning - 快速启动脚本
 
-echo "=============================================="
-echo "SFT Quick Start (Conda d2l environment)"
-echo "=============================================="
-
-# 激活 conda 环境
-source $(which conda)/../etc/profile.d/conda.sh
-conda activate d2l
-
+echo "=== Post Train Learning ==="
+echo "1. 安装依赖"
+echo "2. 下载模型"
+echo "3. 训练 SFT"
+echo "4. 训练 DPO"
+echo "5. 模型评测"
+echo "6. 退出"
 echo ""
-echo "Conda environment: d2l"
-python -c "import torch; print(f'PyTorch version: {torch.__version__}')"
-python -c "import transformers; print(f'Transformers version: {transformers.__version__}')"
 
-# 1. 数据预处理
-echo ""
-echo "Step 1: Preprocessing data..."
-python scripts/preprocess_data.py \
-    --input_dir ./data/raw \
-    --output_dir ./data/processed \
-    --test_split 0.1
+read -p "请选择 [1-6]: " choice
 
-# 2. 开始训练
-echo ""
-echo "Step 2: Starting training..."
-python scripts/train.py \
-    --model_config configs/model_config.yaml \
-    --training_config configs/training_config.yaml \
-    --output_dir ./outputs
-
-echo ""
-echo "=============================================="
-echo "Quick Start completed!"
-echo "=============================================="
-echo ""
-echo "Next steps:"
-echo "  Evaluate: python scripts/evaluate.py"
-echo "  Inference: python scripts/inference.py --interactive"
+case $choice in
+    1)
+        echo "安装依赖..."
+        pip install -r requirements.txt
+        ;;
+    2)
+        echo "下载模型 (Qwen2.5-0.5B)..."
+        git lfs install
+        git clone https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct ./models/qwen2.5-0.5b-instruct
+        ;;
+    3)
+        echo "训练 SFT..."
+        python scripts/train.py
+        ;;
+    4)
+        echo "训练 DPO..."
+        python scripts/train_dpo.py
+        ;;
+    5)
+        echo "模型评测 (180 题)..."
+        python scripts/eval_benchmark_local.py --benchmark mini
+        ;;
+    6)
+        echo "退出"
+        exit 0
+        ;;
+    *)
+        echo "无效选择"
+        exit 1
+        ;;
+esac

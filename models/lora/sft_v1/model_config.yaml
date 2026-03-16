@@ -1,0 +1,33 @@
+inference:
+  do_sample: true
+  max_new_tokens: 128
+  num_beams: 1
+  repetition_penalty: 1.1
+  temperature: 0.7
+  top_k: 40
+  top_p: 0.9
+  use_cache: true
+lora:
+  alpha: 16
+  bias: none
+  dropout: 0.05
+  r: 8
+  target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+  task_type: CAUSAL_LM
+model:
+  model_type: qwen2
+  name_or_path: ./models/qwen2.5-0.5b-instruct
+  torch_dtype: float32
+  trust_remote_code: true
+quantization:
+  bnb_4bit_compute_dtype: float32
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+  use_4bit: false

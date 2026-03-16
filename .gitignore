@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.DS_Store
+
+# ==================== 模型基座（必读！）================
+# 基座模型太大，不上传
+# 使用以下命令下载模型：
+# git lfs install
+# git clone https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct ./models/qwen2.5-0.5b-instruct
+models/qwen2.5-0.5b-instruct/
+
+# ==================== 训练输出 ====================
+# 训练日志和临时文件
+outputs/log/tensorboard/
+*.log
+
+# ==================== 其他 ====================
+# 环境变量
+.env
+.env.local
+
+# 临时文件
+*.tmp
+*.temp
