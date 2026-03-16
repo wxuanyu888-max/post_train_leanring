@@ -4,6 +4,8 @@ data:
   output_dir: ./data/processed
   test_split_size: 0.1
   seed: 42
+  # 训练数据源路径（支持单个文件或目录）
+  train_data: ./data/sft_1000/sft-1000.jsonl
 
 # 提示模板
 prompt_template: |
