@@ -1,0 +1,12 @@
+{
+  "chinese_basic": 30,
+  "ceval": 0,
+  "cmmlu": 0,
+  "gsm8k": 200,
+  "hellaswag": 200,
+  "arc_easy": 570,
+  "arc_challenge": 299,
+  "truthfulqa": 100,
+  "mmlu": 198,
+  "total": 1597
+}

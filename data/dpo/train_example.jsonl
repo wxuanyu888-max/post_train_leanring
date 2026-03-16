@@ -1,0 +1,14 @@
+[
+  {
+    "instruction": "请解释一下什么是机器学习",
+    "input": "",
+    "chosen": "机器学习是人工智能的一个分支，它使计算机能够从数据中学习并做出决策或预测，而无需明确编程。机器学习算法通过识别数据中的模式来工作，并用这些模式来进行预测或分类。",
+    "rejected": "机器学习就是让电脑学习的东西，很简单。"
+  },
+  {
+    "instruction": "帮我写一个 Python 函数",
+    "input": "计算两个数的和",
+    "chosen": "def add_two_numbers(a, b):\n    \"\"\"计算两个数的和\n    \n    Args:\n        a: 第一个数\n        b: 第二个数\n    \n    Returns:\n        两数之和\n    \"\"\"\n    return a + b",
+    "rejected": "def add(a, b):\n    return a + b"
+  }
+]

@@ -1,0 +1,42 @@
+# DPO 训练配置
+training:
+  output_dir: ./outputs/dpo
+  num_train_epochs: 1
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 5.0e-7           # DPO 通常用更小的学习率
+  warmup_ratio: 0.03
+  lr_scheduler_type: cosine
+  logging_steps: 5
+  save_steps: 50
+  save_total_limit: 3
+  fp16: false
+  bf16: false
+  gradient_checkpointing: true
+  optim: adamw_torch
+  max_grad_norm: 1.0
+  weight_decay: 0.01
+  seed: 42
+  evaluation_strategy: "no"
+
+# DPO 特有参数
+dpo:
+  beta: 0.1                       # 温度参数，控制偏离参考模型的程度
+  loss_type: sigmoid              # sigmoid, ipo, kto_pair
+  use_reference_model: true       # 是否使用参考模型
+
+# 数据配置
+data:
+  train_file: ./data/dpo/train.jsonl
+  validation_file: ./data/dpo/valid.jsonl
+  max_seq_length: 512
+  preprocessing_num_workers: 4
+
+# DPO 数据格式说明:
+# JSONL 格式，每行包含:
+# {
+#     "instruction": "用户指令",
+#     "input": "可选的输入内容",
+#     "chosen": "优选的回复",
+#     "rejected": "拒绝的回复"
+# }

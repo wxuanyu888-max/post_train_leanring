@@ -1,0 +1,8 @@
+{
+  "end_time": "2026-03-13T21:05:38.530203",
+  "total_time_seconds": 5343.9885540008545,
+  "total_steps": 58,
+  "steps_per_second": 0.010853316659253969,
+  "final_loss": 0.0,
+  "best_eval_loss": null
+}

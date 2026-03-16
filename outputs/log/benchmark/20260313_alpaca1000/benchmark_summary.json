@@ -1,0 +1,12 @@
+{
+  "mini_benchmarks": {
+    "total_samples": 40,
+    "correct_samples": 5,
+    "accuracy": 12.5,
+    "start_time": "2026-03-13T14:37:55.528148",
+    "end_time": "2026-03-13T15:08:51.587474",
+    "duration_seconds": 1856.0593001842499,
+    "samples_per_second": 0.021551035570915877,
+    "category_breakdown": {}
+  }
+}

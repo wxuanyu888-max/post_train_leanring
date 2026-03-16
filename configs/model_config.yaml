@@ -1,0 +1,40 @@
+# 模型配置
+model:
+  name_or_path: ./models/qwen2.5-0.5b-instruct
+  model_type: qwen2
+  trust_remote_code: true
+  torch_dtype: float32  # Mac CPU/MPS 用 float32
+
+# LoRA 配置
+lora:
+  r: 8                    # LoRA 秩，越大参数越多
+  alpha: 16               # LoRA alpha 参数，通常为 2*r
+  dropout: 0.05           # Dropout 比例，防止过拟合
+  target_modules:         # 目标模块，Qwen2 的注意力层和前馈层
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  bias: none
+  task_type: CAUSAL_LM
+
+# 量化配置 (显存不足时启用)
+quantization:
+  use_4bit: false         # Mac CPU 不支持 4bit，关闭
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_compute_dtype: float32
+  bnb_4bit_use_double_quant: true
+
+# 推理配置 (优化生成速度)
+inference:
+  max_new_tokens: 128     # 减少默认生成长度，加快速度
+  temperature: 0.7        # 采样温度
+  top_p: 0.9              # Top-p 采样
+  top_k: 40               # Top-k 采样 (降低从 50 到 40)
+  repetition_penalty: 1.1
+  use_cache: true         # 启用 KV Cache，显著加速
+  num_beams: 1            # 禁用束搜索，加快生成
+  do_sample: true         # 启用采样

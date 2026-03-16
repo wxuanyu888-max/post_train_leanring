@@ -1,0 +1,10 @@
+{
+  "start_time": "2026-03-13T19:36:34.541240",
+  "output_dir": "outputs/lora/dpo_v1",
+  "num_train_epochs": 1,
+  "total_steps": 58,
+  "per_device_train_batch_size": 4,
+  "gradient_accumulation_steps": 4,
+  "learning_rate": 5e-07,
+  "warmup_ratio": 0.03
+}

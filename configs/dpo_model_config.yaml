@@ -1,0 +1,38 @@
+# DPO 模型配置
+# 复用 SFT 模型配置，可在此基础上调整
+
+model:
+  name_or_path: ./outputs/sft     # DPO 通常在 SFT 模型基础上训练
+  model_type: qwen2
+  trust_remote_code: true
+  torch_dtype: float32
+
+# LoRA 配置
+lora:
+  r: 8
+  alpha: 16
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  bias: none
+  task_type: CAUSAL_LM
+
+# 量化配置
+quantization:
+  use_4bit: false
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_compute_dtype: float32
+  bnb_4bit_use_double_quant: true
+
+# 参考模型配置
+# DPO 需要一个参考模型来计算 KL 散度
+reference_model:
+  # 如果为空，将使用当前模型的副本作为参考模型
+  name_or_path: ""
+  # 通常参考模型是 SFT 后的模型，不应用 LoRA

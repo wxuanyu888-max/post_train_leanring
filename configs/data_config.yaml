@@ -1,0 +1,29 @@
+# 数据配置
+data:
+  raw_data_dir: ./data/raw
+  output_dir: ./data/processed
+  test_split_size: 0.1
+  seed: 42
+
+# 提示模板
+prompt_template: |
+  ### Instruction:
+  {instruction}
+
+  ### Input:
+  {input}
+
+  ### Output:
+  {output}
+
+# 数据源配置
+data_sources:
+  - name: alpaca
+    file: alpaca-cleaned.jsonl
+    weight: 1.0
+  - name: belle
+    file: belle-500.jsonl
+    weight: 1.0
+  - name: customer_service
+    file: customer-service-100.jsonl
+    weight: 2.0
